@@ -152,7 +152,7 @@ def live_monitoring(conf_threshold):
 
 # --- MAIN ENGINE CONTROLLER ---
 def main():
-    st.title("♻️ Intelligent Garbage Detection System")
+    st.title("♻️ Garbage Detection System")
     st.write("Automated Municipal Surveillance, Waste Management & Object Localization Dashboard.")
     st.markdown("---")
     
