@@ -12,7 +12,7 @@ An automated municipal surveillance, waste management, and object localization e
 
 * **mAP@50 (Overall):** **77.2%** 
 * **Framework:** Ultralytics YOLO11m
-* **Training Platform:** Free T4 GPU Environment
+* **Training Platform:** RTX 4060 GPU
 * **Optimization Strategy:** Hyperparameter tuning over 50 epochs, utilizing early stopping validation metrics to prevent overfitting.
 
 ---
