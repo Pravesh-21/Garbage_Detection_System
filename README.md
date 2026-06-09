@@ -73,7 +73,7 @@ pip install -r requirements.txt
 **To launch the FastAPI Backend Gateway (`http://127.0.0.1:8000`):***
 python api.py
 
-##📂 Repository Artifacts Matrix
+## 📂 Repository Artifacts Matrix
 app.py - Core Streamlit frontend application layer.  
 api.py - FastAPI gateway endpoints.  
 best.pt - Custom fine-tuned model weights mandatory for deployment.  
