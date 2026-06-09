@@ -5,7 +5,6 @@ import numpy as np
 import tempfile
 from ultralytics import YOLO
 
-# --- CONFIGURATION & MODEL LOADING ---
 MODEL_PATH = r"E:\Garbage_Detection_System\runs\detect\garbage_detection\yolo11m_local_run\weights\best.pt"
 
 st.set_page_config(
@@ -24,7 +23,6 @@ def load_model(path):
 
 model = load_model(MODEL_PATH)
 
-# --- MODEL INFERENCE HELPER ---
 def process_frame(frame, conf_threshold):
     """Runs YOLO inference on a single frame and returns the annotated frame and box counts."""
     results = model.predict(source=frame, conf=conf_threshold, verbose=False)
@@ -40,7 +38,6 @@ def process_frame(frame, conf_threshold):
     return annotated_frame, class_counts
 
 
-# --- CORE MODULE FUNCTIONS ---
 
 def upload_image(conf_threshold):
     """Handles static image uploading, processing, and display."""
@@ -136,7 +133,6 @@ def live_monitoring(conf_threshold):
         st.info("Camera feed terminated securely.")
 
 
-# --- MAIN APPLICATION CONTROLLER ---
 def main():
     st.title("♻️ Garbage Detection System Dashboard")
     st.write("An automated ecosystem for identifying localized littering and managing municipal waste categories.")
