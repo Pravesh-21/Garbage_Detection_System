@@ -8,7 +8,7 @@ from datetime import datetime
 from ultralytics import YOLO
 
 # --- CONFIGURATION ---
-MODEL_PATH = r"best.pt"
+MODEL_PATH = "best.pt"
 
 st.set_page_config(
     page_title="Garbage Detection System",

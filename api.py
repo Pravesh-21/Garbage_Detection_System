@@ -9,7 +9,7 @@ from ultralytics import YOLO
 app = FastAPI(title="BERAM Garbage Detection API System")
 
 # Load your custom fine-tuned weights
-MODEL_PATH = r"E:\Garbage_Detection_System\runs\detect\garbage_detection\yolo11m_local_run\weights\best.pt"
+MODEL_PATH = "E:best.pt"
 model = YOLO(MODEL_PATH)
 
 @app.get("/")
