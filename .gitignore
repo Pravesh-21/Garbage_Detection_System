@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+
+# YOLO datasets
+merged_dataset/
+Garbage_YOLO_Dataset/
+
+# Training outputs
+runs/
+
+# Model weights
+*.pt
+*.pth
+*.onnx
+
+# Logs
+*.log

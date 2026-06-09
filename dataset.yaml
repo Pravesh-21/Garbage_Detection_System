@@ -1,0 +1,7 @@
+path: E:/Garbage_Detection_System/merged_dataset   # <-- Replace with your exact root directory path
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: garbage

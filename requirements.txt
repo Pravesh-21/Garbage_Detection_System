@@ -1,0 +1,14 @@
+# --- Core Deep Learning & Computer Vision ---
+ultralytics>=8.4.61
+torch>=2.0.0
+torchvision>=0.15.0
+
+# --- Frontend Deployment & Interactive App UI ---
+streamlit>=1.30.0
+opencv-python-headless>=4.8.0.0
+pillow>=10.0.0
+numpy>=1.24.0
+
+# --- Dataset Management & Model Evaluation Metrics ---
+scikit-learn>=1.3.0
+pyyaml>=6.0.1
