@@ -2,7 +2,7 @@
 
 An automated municipal surveillance, waste management, and object localization ecosystem utilizing a fine-tuned YOLO11m architecture. The system features a public real-time Streamlit dashboard alongside a high-performance FastAPI backend gateway for model inference.
 
-🔗 **Live Production Link:** [https://garbagedetectionsystem.streamlit.app/](https://garbagedetectionsystem.streamlit.app/)
+🔗 **Live Production Link:** [https://garbagedetectionsystem.streamlit.app/](https://garbagedetectionsystem.streamlit.app/)/n
 **Download Dataset** :- https://www.kaggle.com/datasets/pravesh212006/garbage-detection-dataset
 
 ---
