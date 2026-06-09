@@ -8,7 +8,7 @@ from datetime import datetime
 from ultralytics import YOLO
 
 # --- CONFIGURATION ---
-MODEL_PATH = r"E:\Garbage_Detection_System\runs\detect\garbage_detection\yolo11m_local_run\weights\best.pt"
+MODEL_PATH = r"best.pt"
 
 st.set_page_config(
     page_title="Garbage Detection System",
