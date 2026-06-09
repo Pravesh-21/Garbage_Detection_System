@@ -70,7 +70,7 @@ pip install -r requirements.txt
 
 ### 4. Run the Architecture Engines
 
-**To launch the FastAPI Backend Gateway (`http://127.0.0.1:8000`):***
+**To launch the FastAPI Backend Gateway (`http://127.0.0.1:8000`):**
 python api.py
 
 ## 📂 Repository Artifacts Matrix
