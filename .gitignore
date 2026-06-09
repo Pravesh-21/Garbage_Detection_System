@@ -5,6 +5,7 @@ __pycache__/
 # YOLO datasets
 merged_dataset/
 Garbage_YOLO_Dataset/
+merged_dataset.zip
 
 # Training outputs
 runs/

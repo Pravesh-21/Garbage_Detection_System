@@ -11,14 +11,14 @@ from ultralytics import YOLO
 MODEL_PATH = r"E:\Garbage_Detection_System\runs\detect\garbage_detection\yolo11m_local_run\weights\best.pt"
 
 st.set_page_config(
-    page_title="BERAM Garbage Detection System",
+    page_title="Garbage Detection System",
     page_icon="♻️",
     layout="wide"
 )
 
 # --- INITIALIZE SESSION STATE FOR BONUS FEATURES ---
 if "detection_log" not in st.session_state:
-    st.session_state.detection_log = []  # Stores history with timestamps 
+    st.session_state.detection_log = []  # Stores history with timestamps
 
 # --- CACHE MODEL LOADING ---
 @st.cache_resource
@@ -34,7 +34,10 @@ model = load_model(MODEL_PATH)
 # --- INFERENCE HELPER WITH LOGGING MECHANISM ---
 def process_frame(frame, conf_threshold):
     """Runs YOLO inference, annotates the frame, and registers detections to the log."""
-    results = model.predict(source=frame, conf=conf_threshold, verbose=False)
+    # Ensure the frame is in standard BGR for YOLO's internal plotter
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB) if frame.shape[-1] == 4 else frame
+    
+    results = model.predict(source=rgb_frame, conf=conf_threshold, verbose=False)
     annotated_frame = results[0].plot()
     
     boxes = results[0].boxes
@@ -44,19 +47,16 @@ def process_frame(frame, conf_threshold):
         detected_classes = [model.names[int(cls)] for cls in boxes.cls]
         class_counts = {cls: detected_classes.count(cls) for cls in set(detected_classes)}
         
-        # Log the detection with timestamp (Bonus Feature) 
+        # Log the detection with timestamp
         timestamp = datetime.now().strftime("%H:%M:%S")
         log_entry = f"[{timestamp}] Detected: " + ", ".join([f"{k} ({v})" for k, v in class_counts.items()])
         
-        # Prevent duplicate log spamming from consecutive video frames
         if not st.session_state.detection_log or st.session_state.detection_log[-1][10:] != log_entry[10:]:
             st.session_state.detection_log.append(log_entry)
-            # Keep log concise (last 15 entries)
             if len(st.session_state.detection_log) > 15:
                 st.session_state.detection_log.pop(0)
                 
     return annotated_frame, class_counts
-
 
 # --- CORE OPERATIONS FUNCTIONS ---
 
@@ -79,13 +79,13 @@ def upload_image(conf_threshold):
                 annotated_img_rgb = cv2.cvtColor(annotated_img, cv2.COLOR_BGR2RGB)
                 st.image(annotated_img_rgb, caption="Processed Detection Output", use_container_width=True)
         
-        # UI Metrics Display Layer 
+        # UI Metrics Display Layer
         st.markdown("### 📊 Detection Breakdowns")
         if counts:
             total_items = sum(counts.values())
             st.success(f"Successfully localized {total_items} items of garbage in scene.")
             
-            # Display items neatly as structured metric columns [cite: 34, 41]
+            # Display items neatly as structured metric columns
             metric_cols = st.columns(min(len(counts), 6))
             for i, (cls_name, count) in enumerate(counts.items()):
                 with metric_cols[i % 6]:
@@ -153,7 +153,7 @@ def live_monitoring(conf_threshold):
 # --- MAIN ENGINE CONTROLLER ---
 def main():
     st.title("♻️ Intelligent Garbage Detection System")
-    st.write("BERAM Round 2 Automated Municipal Surveillance & Object Localization Dashboard.") [cite: 4]
+    st.write("Automated Municipal Surveillance, Waste Management & Object Localization Dashboard.")
     st.markdown("---")
     
     # --- SIDEBAR CONTROL VECTOR PANEL ---
@@ -162,23 +162,23 @@ def main():
     
     mode = st.sidebar.radio(
         "Select Operations Interface",
-        ["Static Image Processing", "Batch Video Processing", "Real-Time Surveillance"] [cite: 34]
+        ["Static Image Processing", "Batch Video Processing", "Real-Time Surveillance"]
     )
     
     st.sidebar.markdown("---")
     st.sidebar.info(f"🧬 Engine Weights Block: \n`{MODEL_PATH.split('\\')[-1]}`")
 
-    # --- FASTAPI BACKEND MONITOR BLOCK [cite: 34] ---
+    # --- FASTAPI BACKEND MONITOR BLOCK ---
     st.sidebar.markdown("### 🌐 Backend Gateway Stream")
     try:
         api_check = requests.get("http://127.0.0.1:8000/", timeout=1)
         if api_check.status_code == 200:
-            st.sidebar.success("🟢 API Gateway Route Active (/predict)") [cite: 34]
+            st.sidebar.success("🟢 API Gateway Route Active (/predict)")
     except requests.exceptions.ConnectionError:
         st.sidebar.warning("⚠️ API Gateway Offline (Run 'python api.py')")
 
-    # --- HISTORICAL DETECTION LOG PANEL (Bonus Feature)  ---
-    st.sidebar.markdown("### 📜 Real-time Detection Log") [cite: 42]
+    # --- HISTORICAL DETECTION LOG PANEL (Bonus Feature) ---
+    st.sidebar.markdown("### 📜 Real-time Detection Log")
     if st.sidebar.button("Clear Log History"):
         st.session_state.detection_log = []
         
