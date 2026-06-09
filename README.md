@@ -10,7 +10,7 @@ An automated municipal surveillance, waste management, and object localization e
 
 ## 📊 Performance Benchmarks
 
-* **mAP@50 (Overall):** **77.2%** (Exceeds the strong submission target of 70%+)
+* **mAP@50 (Overall):** **77.2%** 
 * **Framework:** Ultralytics YOLO11m
 * **Training Platform:** Free T4 GPU Environment
 * **Optimization Strategy:** Hyperparameter tuning over 50 epochs, utilizing early stopping validation metrics to prevent overfitting.
